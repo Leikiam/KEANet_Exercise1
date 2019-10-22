@@ -27,13 +27,13 @@
 
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2">
-        <CheckBox Grid.Row="1" Grid.Column="0"/>
+                <CheckBox x:Name="checkbox" Checked="checkbox_Checked" Unchecked="checkbox_Unchecked" Grid.Row="1" Grid.Column="0"/>
             <TextBlock Text="Internet connection"  Grid.Row="0" Grid.Column="0" FontSize="16" />
         </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
             <TextBlock Text="Phone lines"  Grid.Row="2" Grid.Column="0" FontSize="16" />
-                <TextBox Width="200"/>
+                <TextBox x:Name="phoneline_number" Width="200"/>
             </StackPanel>
 
             <TextBlock Text="Cell phones:" FontSize="16" Margin="0,10,0,0"/>
@@ -47,10 +47,10 @@
                 <ListBox x:Name="listbox_left" SelectionChanged="listbox_left_SelectionChanged" Height="100" Width="100" Margin="10,0,0,0" HorizontalAlignment="Left"/>
 
                 <StackPanel Orientation="Vertical" Margin="10,20,10,0">
-                    <Button Width="30" Height="30" Content=">"/>
-                    <Button Width="30" Height="30" Content="&#x003C;"/>
+                    <Button Click="GreaterThanButton_Click" Width="30" Height="30" Content=">"/>
+                    <Button Click="LesserThanButton_Click" Width="30" Height="30" Content="&#x003C;"/>
                 </StackPanel>
-                <ListBox Height="100" Width="100" Margin="10,0,0,0" HorizontalAlignment="Left"/>
+                <ListBox x:Name="listbox_right" Height="100" Width="100" Margin="10,0,0,0" HorizontalAlignment="Left"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -58,7 +58,7 @@
                 <TextBlock Text="0" FontSize="16" />
                 <TextBlock Text=" DKK" FontSize="16" />
             </StackPanel>
-            <Button Content="Buy" FontSize="16" Width="50"  Height="30" HorizontalAlignment="Left" Margin="20,10,0,0"/>
+            <Button Click="BuyButton_Click" Content="Buy" FontSize="16" Width="50"  Height="30" HorizontalAlignment="Left" Margin="20,10,0,0"/>
         </StackPanel>
     
     </Grid>
