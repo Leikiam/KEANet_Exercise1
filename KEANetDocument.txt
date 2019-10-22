@@ -1,0 +1,5 @@
+We Started out trying to use C# ASP.net because we wanted to use the html file, 
+but none of us had enough experience with C# ASP.net. 
+We changed it to C# WPF.net where we decided to design the front end ourselves.
+We have now learned that instead of trying to do something new, 
+we should have tried to make it in what we knew from the start.  
