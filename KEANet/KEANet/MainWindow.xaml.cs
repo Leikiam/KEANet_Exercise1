@@ -24,5 +24,9 @@ namespace KEANet
         {
             InitializeComponent();
         }
+
+        private void listbox_left_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
     }
 }
