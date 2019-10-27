@@ -15,43 +15,107 @@ using System.Windows.Shapes;
 
 namespace KEANet
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        Purchase purchase;
+
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void listbox_left_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            ListBoxItem lbi1 = new ListBoxItem();
+            ListBoxItem lbi2 = new ListBoxItem();
+            ListBoxItem lbi3 = new ListBoxItem();
+            ListBoxItem lbi4 = new ListBoxItem();
+            ListBoxItem lbi5 = new ListBoxItem();
+            lbi1.Content = "Motorola G99";
+            lbi2.Content = "iPhone 99";
+            lbi3.Content = "Samsung Galaxy 99";
+            lbi4.Content = "Sony Xperia 99";
+            lbi5.Content = "Huawei 99";
+            listbox_left.Items.Add(lbi1);
+            listbox_left.Items.Add(lbi2);
+            listbox_left.Items.Add(lbi3);
+            listbox_left.Items.Add(lbi4);
+            listbox_left.Items.Add(lbi5);
+
+            purchase = new Purchase();
         }
 
         private void GreaterThanButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("greater than button");
+            if (listbox_left.SelectedItem != null)
+            {
+                ListBoxItem temp = (ListBoxItem)listbox_left.SelectedItem;
+
+                ListBoxItem lbi1 = new ListBoxItem();
+                lbi1.Content = temp.Content;
+                listbox_right.Items.Add(lbi1);
+
+                purchase.SelectCellPhone(temp.Content.ToString());
+
+                updateTotalPriceUI();
+            }
         }
 
         private void LesserThanButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("lesser than button");
+            if (listbox_right.SelectedItem != null)
+            {
+                ListBoxItem temp = (ListBoxItem)listbox_right.SelectedItem;
+                listbox_right.Items.Remove(listbox_right.SelectedItem);
+
+                purchase.UnselectCellPhone(temp.Content.ToString());
+
+                updateTotalPriceUI();
+            }
         }
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("buy button");
+            MessageBox.Show(purchase.Buy());
+
+            listbox_right.Items.Clear();
+            checkbox.IsChecked = false;
+            purchase.Reset();
+            txtNum.Text = purchase.PhoneLines.ToString();
+
+            updateTotalPriceUI();
         }
 
         private void checkbox_Checked(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("checkbox checked");
+            purchase.IncludeExcludeInternetConnection(true);
+
+            updateTotalPriceUI();
         }
 
         private void checkbox_Unchecked(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("checkbox unchecked");
+            purchase.IncludeExcludeInternetConnection(false);
+
+            updateTotalPriceUI();
+        }
+
+        private void cmdUp_Click(object sender, RoutedEventArgs e)
+        {
+            purchase.IncrementPhoneLineNumber();
+            txtNum.Text = purchase.PhoneLines.ToString();
+
+            updateTotalPriceUI();
+        }
+
+        private void cmdDown_Click(object sender, RoutedEventArgs e)
+        {
+            purchase.DecrementPhoneLineNumber();
+            txtNum.Text = purchase.PhoneLines.ToString();
+
+            updateTotalPriceUI();
+        }
+
+        private void updateTotalPriceUI()
+        {
+            priceLabel.Text = purchase.Price.ToString();
         }
     }
 }
