@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KEANet
 {
-    class Purchase
+    public class Purchase
     {
         public bool InternetConnection { get; set; }
         public int Price { get; set; }
