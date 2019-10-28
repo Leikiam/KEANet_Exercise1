@@ -8,6 +8,7 @@ namespace KEANet
 {
     public class Purchase
     {
+        //Use variable InternetConnection and CellPhone
         public bool InternetConnection { get; set; }
         public int Price { get; set; }
         public string[] CellPhone { get; set; }
@@ -62,6 +63,7 @@ namespace KEANet
 
         public string Buy()
         {
+            if (Price < 0) Price = 0;
             return "You have bought items for a total of " + Price + " DKK";
         }
 

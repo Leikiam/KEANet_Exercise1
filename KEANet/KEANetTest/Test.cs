@@ -6,101 +6,120 @@ namespace KEANetTest
 {
     public class Test
     {
-        [Fact]
-        public void ExcludeInternetConnectionTest()
+        [Theory]
+        [InlineData(false, 200)]
+        [InlineData(true, 600)]
+        public void IncludeExcludeInternetConnectionTest(bool input, int expected)
         {
             //Arrange
             Purchase purchase = new Purchase();
 
             //Act
-            purchase.IncludeExcludeInternetConnection(true);
+            purchase.Price = 400;
+            purchase.IncludeExcludeInternetConnection(input);
 
             //Assert
-            Assert.Equal(200, purchase.Price);
+            Assert.Equal(expected, purchase.Price);
         }
 
-        [Fact]
-        public void IncludeInternetConnectionTest()
-        {
-            //Arrange
-            Purchase purchase = new Purchase();
-
-            //Act
-            purchase.Price = 200;
-            purchase.IncludeExcludeInternetConnection(false);
-
-            //Assert
-            Assert.Equal(0, purchase.Price);
-        }
-
-        [Fact]
-        public void IncrementPhoneLineNumber()
-        {
-            //Arrange
-            Purchase purchase = new Purchase();
-
-            //Act
-            purchase.IncrementPhoneLineNumber();
-
-            //Assert
-            Assert.Equal(150, purchase.Price);
-        }
-
-        [Fact]
-        public void DecrementPhoneLineNumber()
-        {
-            //Arrange
-            Purchase purchase = new Purchase();
-
-            //Act
-            purchase.Price = 1000;
-            purchase.PhoneLines = 4;
-            purchase.DecrementPhoneLineNumber();
-
-            //Assert
-            Assert.Equal(850, purchase.Price);
-        }
-
-        [Fact]
-        public void SelectCellPhone()
-        {
-            //Arrange
-            Purchase purchase = new Purchase();
-            string phoneModel = "iPhone 99";
-
-            //Act
-            purchase.SelectCellPhone(phoneModel);
-
-            //Assert
-            Assert.Equal(6000, purchase.Price);
-        }
-
-        [Fact]
-        public void UnselectCellPhone()
-        {
-            //Arrange
-            Purchase purchase = new Purchase();
-            string phoneModel = "Huawei 99";
-
-            //Act
-            purchase.Price = 3500;
-            purchase.UnselectCellPhone(phoneModel);
-
-            //Assert
-            Assert.Equal(2600, purchase.Price);
-        }
-
-        [Fact]
-        public void Buy()
+        [Theory]
+        [InlineData(1, 2150)]
+        [InlineData(3, 2450)]
+        [InlineData(4, 2600)]
+        [InlineData(10, 2600)]
+        public void IncrementPhoneLineNumber(int numberOfIncrements, int expected)
         {
             //Arrange
             Purchase purchase = new Purchase();
 
             //Act
             purchase.Price = 2000;
+            purchase.PhoneLines = 4;
+
+            for (int i = 0; i < numberOfIncrements; i++)
+            {
+                purchase.IncrementPhoneLineNumber();
+            }
 
             //Assert
-            Assert.Equal("You have bought items for a total of 2000 DKK", purchase.Buy());
+            Assert.Equal(expected, purchase.Price);
+        }
+
+        [Theory]
+        [InlineData(1, 1850)]
+        [InlineData(4, 1400)]
+        [InlineData(10, 1400)]
+        public void DecrementPhoneLineNumber(int numberOfDecrements, int expected)
+        {
+            //Arrange
+            Purchase purchase = new Purchase();
+
+            //Act
+            purchase.Price = 2000;
+            purchase.PhoneLines = 4;
+
+            for (int i = 0; i < numberOfDecrements; i++)
+            {
+                purchase.DecrementPhoneLineNumber();
+            }
+
+            //Assert
+            Assert.Equal(expected, purchase.Price);
+        }
+
+        [Theory]
+        [InlineData("iPhone 99", 6000)]
+        [InlineData("Sony Xperia 99", 900)]
+        [InlineData("Samsung Galaxy 99", 1000)]
+        [InlineData("Motorola G99", 800)]
+        [InlineData("Huawei 99", 900)]
+        public void SelectCellPhone(string phoneModel, int expected)
+        {
+            //Arrange
+            Purchase purchase = new Purchase();
+
+            //Act
+            purchase.SelectCellPhone(phoneModel);
+
+            //Assert
+            Assert.Equal(expected, purchase.Price);
+        }
+
+        [Theory]
+        [InlineData("iPhone 99", 4000)]
+        [InlineData("Sony Xperia 99", 9100)]
+        [InlineData("Samsung Galaxy 99", 9000)]
+        [InlineData("Motorola G99", 9200)]
+        [InlineData("Huawei 99", 9100)]
+        public void UnselectCellPhone(string phoneModel, int expected)
+        {
+            //Arrange
+            Purchase purchase = new Purchase();
+
+            //Act
+            purchase.Price = 10000;
+            purchase.UnselectCellPhone(phoneModel);
+
+            //Assert
+            Assert.Equal(expected, purchase.Price);
+        }
+
+        [Theory]
+        [InlineData(1, "You have bought items for a total of 1 DKK")]
+        [InlineData(0, "You have bought items for a total of 0 DKK")]
+        [InlineData(-1, "You have bought items for a total of 0 DKK")]
+        [InlineData(int.MinValue, "You have bought items for a total of 0 DKK")]
+        [InlineData(int.MaxValue, "You have bought items for a total of 2147483647 DKK")]
+        public void Buy(int input, string expected)
+        {
+            //Arrange
+            Purchase purchase = new Purchase();
+
+            //Act
+            purchase.Price = input;
+
+            //Assert
+            Assert.Equal(expected, purchase.Buy());
         }
 
         [Fact]
