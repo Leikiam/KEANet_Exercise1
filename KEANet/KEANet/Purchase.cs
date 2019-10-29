@@ -42,6 +42,8 @@ namespace KEANet
             }
         }
 
+        // This shoul be changed to public string[] CellPhone { get; set; }
+        // Change if we have time!
         public void SelectCellPhone(string modelName)
         {
             if (modelName == "Huawei 99") Price += 900;
