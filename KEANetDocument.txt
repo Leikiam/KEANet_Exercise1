@@ -1,5 +1,36 @@
-We Started out trying to use C# ASP.net because we wanted to use the html file, 
-but none of us had enough experience with C# ASP.net. 
-We changed it to C# WPF.net where we decided to design the front end ourselves.
-We have now learned that instead of trying to do something new, 
-we should have tried to make it in what we knew from the start.  
+
+Project log:
+
+
+Programming language:
+We Started out trying to use C# ASP.net because we wanted to use the html file given, 
+but none of us had enough experience with C# ASP.net. This was time consuming, and we used 3,5 hours trying to
+figure out the best way to use ASP.net.
+
+We then decided to change and use C# WPF instead. 2 on the team have used WPF on their Computer Science course.
+This meant that 1 had to follow along as best as possible.
+
+This change of technology meant that we had to build a WPF application from the html file from scratch.
+Lesson learned here: use more time learning frontend technologies!
+
+Unit tests:
+We have used xunit for Visual Studio. The tests are based on the description in the assignment.
+
+Jenkins:
+No-one from the team has worked with Jenkins or other integration tools before.
+And using C# WPF project with jenking, was not that easy to google for other similary projects.
+
+First we got the project on github, so that every team member could work on the project.
+https://github.com/losoriol/KEANet_Exercise1.git
+
+We then linked the github repository with jenkins. 
+After the first build, we could see our project successfully runned on jenkins.
+But from here we could not figure out how to get jenkins to run our tests.
+From here we didn't finish in time. 
+
+We are confused how to work with Jenkins properly.
+
+Other problems:
+
+Working with 1 mac computer and 2 windows, also gave some complications. Docker might have helped here.
+
