@@ -139,5 +139,21 @@ namespace KEANetTest
             Assert.Equal(0, purchase.PhoneLines);
             Assert.Equal(0, purchase.Price);
         }
+
+        [Fact]
+        public void Reset2()
+        {
+            //Arrange
+            Purchase purchase = new Purchase();
+
+            //Act
+            purchase.Price = 2000;
+            purchase.PhoneLines = 6;
+            purchase.Reset();
+
+            //Assert
+            Assert.Equal(0, purchase.PhoneLines);
+            Assert.Equal(1, purchase.Price);
+        }
     }
 }
