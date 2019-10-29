@@ -1,0 +1,21 @@
+Started by user jenkinsluis
+Running as SYSTEM
+Building in workspace C:\Program Files (x86)\Jenkins\workspace\KeaNetTestBuild
+No credentials specified
+ > git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/losoriol/KEANet_Exercise1.git # timeout=10
+Fetching upstream changes from https://github.com/losoriol/KEANet_Exercise1.git
+ > git.exe --version # timeout=10
+ > git.exe fetch --tags --force --progress -- https://github.com/losoriol/KEANet_Exercise1.git +refs/heads/*:refs/remotes/origin/*
+ > git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/origin/master^{commit}" # timeout=10
+Checking out Revision 76c12cd5bd64a6693c74d13b25bb012b16c72611 (refs/remotes/origin/master)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 76c12cd5bd64a6693c74d13b25bb012b16c72611
+Commit message: "fix"
+ > git.exe rev-list --no-walk 67fc9f2a1b58e61b991d7c562424e41d35496d6c # timeout=10
+INFO: Starting to record.
+INFO: Processing xUnit.Net-v2 (default)
+INFO: Skipping tests recording.
+Finished: SUCCESS
