@@ -18,12 +18,14 @@ namespace KEANet
         {
         }
 
+        //Including/excluding the Internet connection
         public void IncludeExcludeInternetConnection(bool input)
         {
             if (input) Price += 200;
             else Price -= 200;
         }
 
+        //Incrementing the number of phone lines
         public void IncrementPhoneLineNumber()
         {
             if (PhoneLines < 8)
@@ -33,6 +35,7 @@ namespace KEANet
             }
         }
 
+        //Decrementing the number of phone lines
         public void DecrementPhoneLineNumber()
         {
             if (PhoneLines > 0)
@@ -42,8 +45,8 @@ namespace KEANet
             }
         }
 
-        // This shoul be changed to public string[] CellPhone { get; set; }
-        // Change if we have time!
+        // This should have used the CellPhone string array. Would have utilised it if we had more time
+        //Selecting a cell phone
         public void SelectCellPhone(string modelName)
         {
             if (modelName == "Huawei 99") Price += 900;
@@ -54,6 +57,7 @@ namespace KEANet
 
         }
 
+        //Unselecting a cell phone
         public void UnselectCellPhone(string modelName)
         {
             if (modelName == "Huawei 99") Price -= 900;
@@ -63,6 +67,7 @@ namespace KEANet
             if (modelName == "Motorola G99") Price -= 800;
         }
 
+        //Buying
         public string Buy()
         {
             if (Price < 0) Price = 0;
