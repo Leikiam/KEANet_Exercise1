@@ -46,9 +46,11 @@ namespace KEANetTest
         }
 
         [Theory]
+        [InlineData(0, 2000)]
         [InlineData(1, 1850)]
         [InlineData(4, 1400)]
-        [InlineData(10, 1400)]
+        [InlineData(5, 1400)]
+        [InlineData(10, 1400)] //Boundary Testing -- We provide the test with 0 and one loops 
         public void DecrementPhoneLineNumber(int numberOfDecrements, int expected)
         {
             //Arrange
